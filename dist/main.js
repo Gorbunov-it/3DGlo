@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("index: ","index.js"),console.log("one:","one.js"),console.log("two:","two.js")})();
