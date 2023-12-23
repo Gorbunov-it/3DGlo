@@ -1,8 +1,3 @@
-const index = "index.js";
-console.log("index: ", index);
+import timer from "./modules/timer";
 
-import one from "./modules/one";
-import two from "./modules/two";
-
-one();
-two();
+timer("31 december 2023");
