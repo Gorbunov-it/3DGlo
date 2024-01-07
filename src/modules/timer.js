@@ -40,6 +40,7 @@ const timerModule = (deadline) => {
       ZeroDate();
     }
   };
+
   updateClock();
 };
 
