@@ -6,6 +6,7 @@ import calcRegExp from "./modules/calcRegExp";
 import connectRegExp from "./modules/connectRegExp";
 import emailRegExp from "./modules/emailRegExp";
 import telRegExp from "./modules/telRegExp";
+import tabs from "./modules/tabs";
 
 timer("01 January 2024");
 menu();
@@ -15,3 +16,4 @@ calcRegExp();
 connectRegExp();
 emailRegExp();
 telRegExp();
+tabs();

@@ -1,18 +1,22 @@
 const menu = () => {
-  const menuButtom = document.querySelector(".menu");
-  const menu = document.querySelector("menu");
-  const closeButton = menu.querySelector(".close-btn");
-  const menuItems = menu.querySelectorAll("ul>li>a");
+  const menuPanel = document.querySelector("menu");
+  const body = document.querySelector("body");
 
   const handlMenu = () => {
-    menu.classList.toggle("active-menu");
+    menuPanel.classList.toggle("active-menu");
   };
 
-  menuButtom.addEventListener("click", handlMenu);
+  const toggleMenu = () => {
+    body.addEventListener("click", (e) => {
+      if (e.target.closest(".menu") || e.target.closest(".close-btn") || e.target.closest("ul>li>a")) {
+        handlMenu();
+      } else if (e.target.closest(".active-menu")) {
+        handlMenu();
+      }
+    });
+  };
 
-  closeButton.addEventListener("click", handlMenu);
-
-  menuItems.forEach((items) => items.addEventListener("click", handlMenu));
+  toggleMenu();
 };
 
 export default menu;
