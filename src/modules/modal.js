@@ -1,57 +1,54 @@
+import { animate } from "./helpers";
+
 const modal = () => {
   const modal = document.querySelector(".popup");
   const popupButton = document.querySelectorAll(".popup-btn");
   const popupClose = modal.querySelector(".popup-close");
-  let outerWidth = window.outerWidth;
 
-  const openModal = (speed) => {
-    outerWidth = window.outerWidth;
-    if (outerWidth >= 768) {
-      const step = 1 / speed;
-      let interval = setInterval(() => {
-        modal.style.display = "block";
-        if (modal.style.opacity >= 1) {
-          clearInterval(interval);
-          modal.style.opacity = 1;
+  const aminatedModal = (toggle, opacity) => {
+    modal.style.opacity = opacity;
+    animate({
+      duration: 1000,
+      timing(timeFraction) {
+        return timeFraction;
+      },
+      draw(progress) {
+        if (toggle === "block") {
+          modal.style.display = toggle;
+          modal.style.opacity = opacity + progress;
         } else {
-          modal.style.opacity = +modal.style.opacity + step;
+          modal.style.opacity = opacity - progress;
+          if (modal.style.opacity <= 0) {
+            modal.style.display = toggle;
+          }
         }
-      }, speed / 1000);
-    } else {
-      modal.style.display = "block";
-      modal.style.opacity = 1;
-    }
+      },
+    });
   };
 
-  const closeModal = (speed) => {
-    outerWidth = window.outerWidth;
-    if (outerWidth >= 768) {
-      const step = 1 / speed;
-      let interval = setInterval(() => {
-        if (modal.style.opacity < 0) {
-          clearInterval(interval);
-          modal.style.display = "none";
-          modal.style.opacity = 0;
-        } else {
-          modal.style.opacity = +modal.style.opacity - step;
-        }
-      }, speed / 1000);
-    } else {
-      modal.style.display = "none";
-      modal.style.opacity = 0;
-    }
+  const eventAminatedModal = (toggle) => {
+    toggle == "block" ? aminatedModal(toggle, 0) : aminatedModal(toggle, 1);
+  };
+
+  const eventNoAminatedModal = (toggle) => {
+    modal.style.display = toggle;
+    toggle == "block" ? (modal.style.opacity = 1) : (modal.style.opacity = 0);
+  };
+
+  const eventModal = (toggle) => {
+    window.outerWidth >= 768 ? eventAminatedModal(toggle) : eventNoAminatedModal(toggle);
   };
 
   popupButton.forEach((button) => {
     button.addEventListener("click", (e) => {
       e.preventDefault();
-      openModal(200);
+      eventModal("block");
     });
   });
 
   popupClose.addEventListener("click", (e) => {
     e.preventDefault();
-    closeModal(200);
+    eventModal("none");
   });
 };
 
