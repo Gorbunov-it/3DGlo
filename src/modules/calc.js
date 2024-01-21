@@ -1,3 +1,5 @@
+import { animate } from "./helpers";
+
 const calc = (price) => {
   const calcBlock = document.querySelector(".calc-block");
   const calcType = calcBlock.querySelector(".calc-type");
@@ -30,21 +32,21 @@ const calc = (price) => {
       totalValue = 0;
     }
 
-    EffectOverkillNum(totalValue);
+    if (totalValue > 0) {
+      aminated(totalValue);
+    }
   };
 
-  const EffectOverkillNum = (totalValue) => {
-    const time = 3;
-    let step = 50;
-    const interval = (1000 * time) / totalValue;
-    let setinterval = setInterval(() => {
-      if (step <= totalValue) {
-        total.textContent = step;
-      } else {
-        clearInterval(setinterval);
-      }
-      step++;
-    }, interval);
+  const aminated = (totalValue) => {
+    animate({
+      duration: 1000,
+      timing(timeFraction) {
+        return timeFraction;
+      },
+      draw(progress) {
+        total.textContent = Math.round(totalValue * progress);
+      },
+    });
   };
 
   calcBlock.addEventListener("input", (e) => {

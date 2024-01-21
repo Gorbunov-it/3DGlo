@@ -8,6 +8,7 @@ import emailRegExp from "./modules/emailRegExp";
 import telRegExp from "./modules/telRegExp";
 import tabs from "./modules/tabs";
 import slider from "./modules/slider";
+import calc from "./modules/calc";
 
 timer("01 January 2024");
 menu();
@@ -19,3 +20,4 @@ emailRegExp();
 telRegExp();
 tabs();
 slider();
+calc(100);
