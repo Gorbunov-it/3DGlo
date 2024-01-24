@@ -1,11 +1,20 @@
 const connectRegExp = () => {
   const connectBlock = document.getElementById("connect");
   const messageInput = connectBlock.querySelector(".mess");
+  const regExp = /^[-?!,.а-яА-ЯёЁ0-9\s]+$/;
+
+  const isUserMessageValid = (message) => {
+    return regExp.test(message);
+  };
 
   const messageInputEvent = () => {
     messageInput.addEventListener("input", (e) => {
       e.preventDefault();
-      messageInput.value = messageInput.value.replace(/[^\-а-яА-ЯёЁ\s]+$/g, "");
+      if (isUserMessageValid(messageInput.value)) {
+        messageInput.classList.add("success");
+      } else {
+        messageInput.classList.remove("success");
+      }
     });
   };
 

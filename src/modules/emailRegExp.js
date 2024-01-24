@@ -1,19 +1,19 @@
 const emailRegExp = () => {
   const emailInputs = document.querySelectorAll(".form-email");
-  const regExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regExp = /^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$/;
 
-  const isEmailValid = (email, regExp) => {
+  const isUserEmailValid = (email) => {
     return regExp.test(email);
   };
 
   const emailInputEvent = () => {
     emailInputs.forEach((emailInput) => {
-      emailInput.addEventListener("change", (e) => {
+      emailInput.addEventListener("input", (e) => {
         e.preventDefault();
-        if (isEmailValid(emailInput.value, regExp)) {
-          console.log("Success");
+        if (isUserEmailValid(emailInput.value)) {
+          emailInput.classList.add("success");
         } else {
-          emailInput.value = "";
+          emailInput.classList.remove("success");
         }
       });
     });
