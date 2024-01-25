@@ -3,7 +3,6 @@ const timerModule = (deadline) => {
   const timerHours = document.getElementById("timer-hours");
   const timerMinutes = document.getElementById("timer-minutes");
   const timerSeconds = document.getElementById("timer-seconds");
-  const timerAction = document.querySelector(".timer-action");
 
   const getTimeRemaining = () => {
     const dateStop = new Date(deadline).getTime();
@@ -29,7 +28,6 @@ const timerModule = (deadline) => {
 
   const updateClock = () => {
     const getTime = getTimeRemaining();
-    timerAction.textContent = "До нового года осталось";
     timerDays.textContent = creatFormatDate(getTime.days);
     timerHours.textContent = creatFormatDate(getTime.hours);
     timerMinutes.textContent = creatFormatDate(getTime.minutes);
@@ -41,7 +39,15 @@ const timerModule = (deadline) => {
     }
   };
 
-  updateClock();
+  // updateClock();
+
+  const init = () => {
+    setInterval(() => {
+      updateClock();
+    }, 1000);
+  };
+
+  init();
 };
 
 export default timerModule;

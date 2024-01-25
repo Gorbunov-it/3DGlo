@@ -8,9 +8,10 @@ const menu = () => {
 
   const toggleMenu = () => {
     body.addEventListener("click", (e) => {
-      if (e.target.closest(".menu") || e.target.closest(".close-btn") || e.target.closest("ul>li>a")) {
+      if (!e.target.closest(".active-menu") && document.querySelector("menu").closest(".active-menu")) {
         handlMenu();
-      } else if (e.target.closest(".active-menu")) {
+      }
+      if (e.target.closest(".menu") || e.target.closest(".close-btn") || e.target.closest("ul>li>a")) {
         handlMenu();
       }
     });

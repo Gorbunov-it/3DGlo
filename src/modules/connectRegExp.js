@@ -1,7 +1,7 @@
 const connectRegExp = () => {
   const connectBlock = document.getElementById("connect");
   const messageInput = connectBlock.querySelector(".mess");
-  const regExp = /^[-?!,.а-яА-ЯёЁ0-9\s]+$/;
+  const regExp = /^[-?!,.а-яА-ЯёЁ\s]/;
 
   const isUserMessageValid = (message) => {
     return regExp.test(message);

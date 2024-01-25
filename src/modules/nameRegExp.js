@@ -1,6 +1,8 @@
 const nameRegExp = () => {
   const userName = document.querySelectorAll(".form-name");
-  const regExp = /^[-?!,.а-яА-ЯёЁ0-9\s]+$/;
+  const regExp = /^[-?!,.а-яА-ЯёЁ]{2,}$/;
+
+  // /^[-?!,.а-яА-ЯёЁ\s]+$/;
 
   const isUserNameValid = (userName) => {
     return regExp.test(userName);
