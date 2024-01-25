@@ -11,8 +11,9 @@ import tabs from "./modules/tabs";
 import slider from "./modules/slider";
 import calc from "./modules/calc";
 import sendForm from "./modules/sendForm";
+import smallBlock from "./modules/smallBlock";
 
-timer("01 January 2024");
+timer("27 January 2024");
 menu();
 modal();
 scrollBy();
@@ -39,3 +40,4 @@ sendForm({
 sendForm({
   formId: "form3",
 });
+smallBlock();

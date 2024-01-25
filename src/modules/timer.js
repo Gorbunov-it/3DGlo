@@ -32,16 +32,13 @@ const timerModule = (deadline) => {
     timerHours.textContent = creatFormatDate(getTime.hours);
     timerMinutes.textContent = creatFormatDate(getTime.minutes);
     timerSeconds.textContent = creatFormatDate(getTime.seconds);
-    if (getTime.timeRemaining > 0) {
-      setInterval(updateClock, 1000);
-    } else {
+    if (getTime.timeRemaining < 0) {
       ZeroDate();
     }
   };
 
-  // updateClock();
-
   const init = () => {
+    updateClock();
     setInterval(() => {
       updateClock();
     }, 1000);
